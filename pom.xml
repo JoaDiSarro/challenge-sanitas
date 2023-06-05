@@ -23,6 +23,7 @@
 		<mapstruct.version>1.4.2.Final</mapstruct.version>
 		<javax-validation.version>1.0.0.GA</javax-validation.version>
 		<maven-compiler.version>3.11.0</maven-compiler.version>
+		<mockito.version>4.6.1</mockito.version>
 	</properties>
 
 	<profiles>
@@ -37,12 +38,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 			<version>${springboot.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<version>${springboot.version}</version>
-			<scope>test</scope>
 		</dependency>
 		<!-- Common and Spring Framework -->
 
@@ -76,8 +71,34 @@
 			<scope>system</scope>
 			<systemPath>${basedir}/lib/tracer-1.0.0.jar</systemPath>
 		</dependency>
-	</dependencies>
 		<!-- Utils -->
+
+		<!-- Test -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<version>${springboot.version}</version>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.mockito</groupId>
+					<artifactId>mockito-core</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-inline</artifactId>
+			<version>${mockito.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- Test -->
+	</dependencies>
 
 	<build>
 		<plugins>
